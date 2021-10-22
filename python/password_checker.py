@@ -17,7 +17,6 @@ def strongPasswordChecker(s: str) -> int:
     # Len, Ins, Del, Rep
     #  3 ,(n-1)//2, (n-2), n//3
 
-
     # on the 3rd repeated object, can do an insertion, deletion or replacement
     # Create dynamic programming solution that makes a decision every time a 'repeat' is hit
 
@@ -25,6 +24,7 @@ def strongPasswordChecker(s: str) -> int:
     # Actions: (Insert, Delete, Replace)
     # Transitions: (move to next, +1 I/R, reset count, remove a needs lud), (move to next, maintain count, +1 D)
     # Rewards: Sum of I, D, R
+
     def Actions(state: tuple):
         char_index, insertions, deletions, current_run, I, D, R = state
 
@@ -61,14 +61,15 @@ def strongPasswordChecker(s: str) -> int:
         if char_index < len(s):  # TODO check final index
             return 0
         else:
-            print(max(insertions, I) + max(deletions, D) + max(R) + max(0, needs_count - I - R))
+            print(max(insertions, I) + max(deletions, D) +
+                  max(R) + max(0, needs_count - I - R))
             return max(insertions, I) + max(deletions, D) + max(R) + max(0, needs_count - I - R)
 
     def Changes(state):
         # TODO
         return min(
             (Changes(Transition(state, action),)
-            for action in Actions(state)),
+             for action in Actions(state)),
             default=0
         ),
 
@@ -102,4 +103,5 @@ def testPWChecker():
         ),
     ]
     for data, expected in data_and_expected:
-        assert strongPasswordChecker(data) == expected, strongPasswordChecker(data)
+        assert strongPasswordChecker(
+            data) == expected, strongPasswordChecker(data)
