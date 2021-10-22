@@ -27,8 +27,10 @@ def month_to_numeric(datetime_string):
 
 def to_datetime(datetime_string):
     offset_sign = datetime_string[-5]
-    offset_hours = int(datetime_string[-4:-2] if datetime_string[-4] != "0" else datetime_string[-3])
-    offset_minutes = int(datetime_string[-2:] if datetime_string[-2] != "0" else "0")
+    offset_hours = int(
+        datetime_string[-4:-2] if datetime_string[-4] != "0" else datetime_string[-3])
+    offset_minutes = int(
+        datetime_string[-2:] if datetime_string[-2] != "0" else "0")
     offset = datetime.timedelta(hours=offset_hours, minutes=offset_minutes)
 
     if offset_sign == "-":
@@ -36,7 +38,8 @@ def to_datetime(datetime_string):
 
     datetime_string = month_to_numeric(datetime_string)
 
-    datetime_object = datetime.datetime.strptime(datetime_string[4:-6], "%d %m %Y %H:%M:%S")
+    datetime_object = datetime.datetime.strptime(
+        datetime_string[4:-6], "%d %m %Y %H:%M:%S")
     return datetime_object - offset
 
 

@@ -25,9 +25,8 @@ def print_from_stream(n, stream=None):
     for _ in range(n):
         print(stream.get_next())
 
+
 if stream_name == "even":
     print_from_stream(n)
 else:
     print_from_stream(n, OddStream())
-
-

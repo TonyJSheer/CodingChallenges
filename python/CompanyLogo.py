@@ -6,6 +6,7 @@ Sort in descending order of occurrence count.
 If the occurrence count is the same, sort the characters in alphabetical order.
 """
 
+
 def logo_selector(s: str):
 
     letter_occurences = defaultdict(lambda: 0)
@@ -16,7 +17,7 @@ def logo_selector(s: str):
 
     # Sort em (by count then by alphabetical order)
     sorted_occurences = sorted(letter_occurences.items(),
-                            key=lambda item: (-item[1], item[0]))
+                               key=lambda item: (-item[1], item[0]))
 
     logo = ""
     for i, pair in enumerate(sorted_occurences):

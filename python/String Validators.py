@@ -61,8 +61,3 @@ print(alphabetic not in things_to_check)
 print(digit not in things_to_check)
 print(lower not in things_to_check)
 print(upper not in things_to_check)
-
-
-
-
-

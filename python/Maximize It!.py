@@ -10,12 +10,13 @@ Transition space: adding the selected number (chosen action) to the state
 """
 import time
 from math import pow
+
 time1 = time.time()
 K = 3
 M = 1000
 X = [[2, 5, 4],
-[3, 7, 8, 9],
-[5, 5, 7, 8, 9, 10]]
+     [3, 7, 8, 9],
+     [5, 5, 7, 8, 9, 10]]
 """
 X = [
     set((
@@ -53,6 +54,8 @@ time2 = time.time()
 
 
 COUNT = [0, 0, 0, 0]
+
+
 def Final_Reward(selected):
     return sum(selected) % M
 
@@ -74,10 +77,11 @@ def V(selected, k):
             (V(selected + (action,), k + 1),
              action)
             for action in X[k]
-    )
+        )
     else:
         COUNT[2] += 1
     return V_[key]
+
 
 # speedup by introducing dictionary of V with sorted tuple for inputs.
 starting_selection = tuple()

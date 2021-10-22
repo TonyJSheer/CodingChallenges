@@ -6,6 +6,7 @@ k = "z"
 increment = 0
 
 m = re.search(k, S)
+
 if not m:
     print((-1, -1))
 while m:
