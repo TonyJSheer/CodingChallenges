@@ -18,9 +18,10 @@ def logo_selector(s: str):
     sorted_occurences = sorted(letter_occurences.items(),
                             key=lambda item: (-item[1], item[0]))
 
+    logo = ""
     for i, pair in enumerate(sorted_occurences):
         if i < 3:
-            print(f"{pair[0]} {pair[1]}")
+            logo += pair[0]
         else:
             break
-    return s
+    return logo
