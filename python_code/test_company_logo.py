@@ -1,4 +1,5 @@
-from CompanyLogo import logo_selector
+
+from company_logo import logo_selector
 
 
 def test_logo_selector():
