@@ -15,7 +15,8 @@ def unique_paths2(obstacleGrid: List[List[int]]) -> int:
     DEPRECATED, DOESN'T WORK FOR SOME BLOCKERS
     A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
-    The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+    The robot can only move either down or right at any point in time. 
+    The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 
     Now consider if some obstacles are added to the grids. How many unique paths would there be?
 
@@ -25,7 +26,7 @@ def unique_paths2(obstacleGrid: List[List[int]]) -> int:
 
     """
     # two possible approaches,
-    # Firstly, try to generate all possible paths using a dynamic programming style approach (see unique_paths2_dp)
+    # Firstly, try to generate all possible paths using a dynamic programming style approach (see unique_paths2_obstacles below)
     # Secondly, calculate all paths, then calculate and add up all paths_to_obstacle * obstacle_to_goal
     # The second option seems easier to implement
     m, n = len(obstacleGrid), len(obstacleGrid[0])
@@ -43,6 +44,26 @@ def unique_paths2(obstacleGrid: List[List[int]]) -> int:
 
 def unique_paths2_obstacles(obstacleGrid: List[List[int]]) -> int:
     """
-    Instead of the above approach,
-
+    Instead of the above approach, try dynamic programming approach
+    paths_to_square = paths_to_square_above + paths_to_square_below
+    unless square is obstacle or start, then paths = 1 or 0 respectively
     """
+
+    paths_to_square = [[]]
+    paths_to_square = [
+        [0 for _ in row]
+        for row in obstacleGrid
+    ]
+    for i, row in enumerate(obstacleGrid):
+        for j, square in enumerate(row):
+            if square == 1:
+                continue
+            elif i == j == 0:
+                paths_to_square[i][j] = 1
+            else:
+                if i > 0:
+                    paths_to_square[i][j] += paths_to_square[i-1][j]
+                if j > 0:
+                    paths_to_square[i][j] += paths_to_square[i][j-1]
+
+    return paths_to_square[-1][-1]

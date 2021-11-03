@@ -19,6 +19,9 @@ def test_unique_paths2_obstacles():
         ([[0, 0, 0], [0, 1, 0], [0, 1, 0]], 1),
         ([[0, 0, 0], [0, 1, 1], [1, 1, 0]], 0),
         ([[0, 1], [0, 0]], 1),
+        ([[1]], 0),
+        ([[1, 1], [0, 0]], 0),
+
     ]
 
     for grid, expected_paths in grid_and_paths:
